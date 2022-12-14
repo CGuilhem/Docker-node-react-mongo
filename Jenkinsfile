@@ -7,9 +7,9 @@ pipeline {
       }
     }
 
-    stage('Build DB') {
+    stage('Build app') {
       steps {
-        sh 'docker-compose up -d --build'
+        sh 'docker compose up -d --build'
       }
     }
 
