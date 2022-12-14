@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'mongo'
+    }
+
+  }
   stages {
     stage('Print test') {
       steps {
