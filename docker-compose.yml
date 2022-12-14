@@ -1,0 +1,37 @@
+version: '3'
+services:
+  db:
+    container_name: mongo-database
+    image: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - web
+    volumes: 
+      - ./data:/data/db
+
+  node-api:
+    container_name: node-api
+    build: ./back
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - web
+    depends_on:
+      - db
+
+  react-vite-app:
+    container_name: react-vite-app
+    build: ./front
+    ports: 
+      - 5173:5173
+    networks:
+      - web
+    depends_on:
+      - node-api
+
+    
+networks:
+  web:
+    driver: bridge
