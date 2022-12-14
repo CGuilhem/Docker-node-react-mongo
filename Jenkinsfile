@@ -7,5 +7,11 @@ pipeline {
       }
     }
 
+    stage('Build DB') {
+      steps {
+        sh 'docker-compose up -d --build'
+      }
+    }
+
   }
 }
